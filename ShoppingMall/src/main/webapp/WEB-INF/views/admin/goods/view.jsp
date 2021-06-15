@@ -46,8 +46,10 @@
 		input { width:150px; }
 		textarea#gdsDes { width:400px; height:180px; }
 		
-		.orgImg{ width:500px; height:auto; }
+		.orgImg{ width:400px; height:auto; }
 		.thumbImg {}
+		
+		.gdsDes img { max-width:400px; height:auto; }
 	</style>
 
 </head>
@@ -99,17 +101,16 @@
 			</div>
 			
 			<div class="inputArea">
-				<label for="gdsDes">상품소개</label>
-				<span>${goods.gdsDes}</span>
-			</div>
-			
-			<div class="inputArea">
 				<label for="gdsImg">이미지</label>
 				<p>상세 사진</p>
 				<img src="${goods.gdsImg}" class="orgImg"/>
+			</div>
+			
+			<div class="inputArea">
+				<label for="gdsDes">상품소개</label>
 				
-				<p>대표 사진</p>
-				<img src="${goods.gdsThumbImg}" class="thumbImg" />
+				<div class="gdsDes">${goods.gdsDes}</div>
+				
 			</div>
 			
 			<div class="inputArea">

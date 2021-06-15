@@ -2,7 +2,14 @@ package com.eunsam.domain;
 
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.eunsam.controller.AdminController;
+
 public class GoodsVO {
+	
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	private int gdsNum;
 	private String gdsName;
@@ -69,12 +76,5 @@ public class GoodsVO {
 	public void setGdsDate(Date gdsDate) {
 		this.gdsDate = gdsDate;
 	}
-	@Override
-	public String toString() {
-		return "GoodsVO [gdsNum=" + gdsNum + ", gdsName=" + gdsName + ", cateCode=" + cateCode + ", gdsPrice="
-				+ gdsPrice + ", gdsStock=" + gdsStock + ", gdsDes=" + gdsDes + ", gdsImg=" + gdsImg + ", gdsDate="
-				+ gdsDate + "]";
-	}
 	
-
 }
