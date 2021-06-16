@@ -45,7 +45,7 @@
 	nav#nav div#nav_box li a { color:#333; }
  
 	section#container { }
- 
+
 	aside#aside h3 { font-size:22px; margin-bottom:20px; text-align:center; }
 	aside#aside li { font-size:16px; text-align:center; }
 	aside#aside li a { color:#000; display:block; padding:10px 0; }
@@ -76,6 +76,21 @@
 	div.goods div.goodsInfo p.cartStock button { font-size:16px; border:none; background:none; }
 	div.goods div.goodsInfo p.addToCart { text-align:right; }
 	div.goods div.gdsDes { font-size:18px; clear:both; padding-top:30px; }
+</style>
+
+<style>
+section.replyForm { padding:30px 0; }
+section.replyForm div.input_area { margin:10px 0; }
+section.replyForm textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px;; height:150px; }
+section.replyForm button { font-size:15px; padding:5px 10px; margin:10px 0; border:1px solid #ccc; }
+ 
+section.replyList { padding:30px 0; }
+section.replyList ol { padding:0; margin:0; }
+section.replyList ol li { padding:10px 0; border-bottom:2px solid #eee; }
+section.replyList div.userInfo { }
+section.replyList div.userInfo .userName { font-size:24px; font-weight:bold; }
+section.replyList div.userInfo .date { color:#999; display:inline-block; margin-left:10px; }
+section.replyList div.replyContent { padding:10px; margin:20px 0; }
 </style>
 	
 </head>
@@ -116,21 +131,60 @@
 						<p class="cartStock">
 							<span>구입 수량</span><input type="number" min="1" max="${view.gdsStock}" value="1" /></p>
 						<p class="addToCart">
-							<button type="button" class="btn btn-warning">장바구니</button>
+							<button type="button" class="btn btn-warning">CART</button>
 						</p>
 					</div>
 					
 					<div class="gdsDes">${view.gdsDes}</div>
 				</div>
-
+				
+				<div id="reply">
+				
+					<c:if test="${member == null}">
+						<p>리뷰를 남기시려면<a href="/member/signin"> 로그인</a>이 필요합니다</p>
+					</c:if>
+					
+					<c:if test="${member != null}">
+						<section class="replyForm">
+							<form role="form" method="post" autocomplete="off">
+							
+								<input type="hidden" name="gdsNum" value="${view.gdsNum}">
+							
+								<div class="input_area">
+									<textarea name="repCon" id="repCon"></textarea>
+								</div>
+								
+								<div class="input_area">
+									<button type="submit" id="reply_btn" class="btn btn-warning">리뷰 작성</button>
+								</div>
+								
+							</form>
+						</section>
+					</c:if>
+					
+					<section class="replyList">
+						<p style="font-size:30px;">REVIEWS</p>
+						<ol>
+							<c:forEach items="${reply}" var="reply">
+							<li>
+								<div class="userInfo">
+								<span class="userName">${reply.userName}</span>
+								<span class="date"><fmt:formatDate value="${reply.repDate}" pattern="yyyy-MM-dd" /></span>
+								</div>
+								<div class="replyContent">${reply.repCon}</div>
+							</li>
+							</c:forEach>
+						</ol>
+					</section>
+				</div>
 			</section>
 			
 			<aside id="aside">
 				<%@ include file="../include/aside.jsp" %>
 			</aside>
-		</div>
-	</section>
-	
+			
+		</section>
+		
 	<footer id="footer">
 		<div id="footer_box">
 			<%@ include file="../include/footer.jsp" %>

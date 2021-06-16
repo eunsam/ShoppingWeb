@@ -3,6 +3,7 @@ package com.eunsam.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.eunsam.domain.GoodsViewVO;
+import com.eunsam.domain.MemberVO;
+import com.eunsam.domain.ReplyListVO;
+import com.eunsam.domain.ReplyVO;
 import com.eunsam.service.ShopService;
 
 @Controller
@@ -43,5 +47,23 @@ public class ShopController {
 		
 		GoodsViewVO view = service.goodsView(gdsNum);
 		model.addAttribute("view", view);
+		
+		//府轰 格废
+		List<ReplyListVO> reply = service.replyList(gdsNum);
+		model.addAttribute("reply", reply);
+	}
+	
+	//府轰 累己
+	@RequestMapping(value = "/view", method = RequestMethod.POST)
+	public String registReply(ReplyVO reply, HttpSession session) throws Exception {
+		logger.info("regist reply");
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		reply.setUserId(member.getUserId());
+		
+		service.registReply(reply);
+		
+		return "redirect:/shop/view?n=" + reply.getGdsNum();
+		
 	}
 }
