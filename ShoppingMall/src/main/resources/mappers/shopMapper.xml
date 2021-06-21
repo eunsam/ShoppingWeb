@@ -52,4 +52,26 @@ on r.userId=m.userId
 where gdsNum=#{gdsNum}
 </select>
 
+<!-- 리뷰 삭제 -->
+<delete id="deleteReply">
+delete tbl_reply
+where repNum=#{repNum}
+and userId=#{userId}
+</delete>
+
+<!-- 아이디 체크 -->
+<select id="replyUserIdCheck" resultType="String">
+select userId
+from tbl_reply
+where repNum=#{repNum}
+</select>
+
+<!-- 리뷰 수정 -->
+<update id="modifyReply">
+update tbl_reply
+set repCon=#{repCon}
+where repNum=#{repNum}
+and userId=#{userId}
+</update>
+
 </mapper>
