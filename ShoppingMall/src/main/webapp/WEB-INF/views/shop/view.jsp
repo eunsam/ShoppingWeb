@@ -179,7 +179,40 @@ function replyList() {
 						<p class="cartStock">
 							<span>구입 수량</span><input type="number" min="1" max="${view.gdsStock}" value="1" /></p>
 						<p class="addToCart">
-							<button type="button" class="btn btn-warning">CART</button>
+							<button type="button" class="addCart_btn">CART</button>
+							
+							<script>
+								$(".addCart_btn").click(function() {
+									var gdsNum = $("#gdsNum").val();
+									var cartStock = $(".numBox").val();
+									
+									console.log("gdsNum : " + gdsNum);
+									console.log("cartStock : " + cartStock);
+									
+									var data = {
+											gdsNum : gdsNum,
+											cartStock : cartStock
+											};
+									
+									$.ajax({
+										url : "/shop/view/addCart",
+										type : "post",
+										data : data,
+										success : function(result) {
+											if(result == 1) {
+											alert("카트 담기 성공");
+											$(".numBox").val("1");
+											} else {
+												alert("로그인 후 사용 가능합니다.")
+												$(".numBox").val("1");
+											}
+										},
+										error : function() {
+											alert("카트 담기 실패");
+										}
+									});
+								});
+							</script>	
 						</p>
 					</div>
 					

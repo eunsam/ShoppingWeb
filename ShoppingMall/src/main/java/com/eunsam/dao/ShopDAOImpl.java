@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.eunsam.domain.CartListVO;
+import com.eunsam.domain.CartVO;
 import com.eunsam.domain.GoodsViewVO;
 import com.eunsam.domain.ReplyListVO;
 import com.eunsam.domain.ReplyVO;
@@ -76,5 +78,22 @@ public class ShopDAOImpl implements ShopDAO {
 	public void modifyReply(ReplyVO reply) throws Exception {
 		sql.update(namespace + ".modifyReply", reply);
 	}
+	
+	//카트 담기
+	@Override
+	public void addCart(CartVO cart) throws Exception {
+		sql.insert(namespace + ".addCart", cart);
+	}
 
+	//카트 목록
+	@Override
+	public List<CartListVO> cartList(String userId) throws Exception {
+		return sql.selectList(namespace + ".cartList", userId);
+	}
+	
+	//카트 삭제
+	@Override
+	public void deleteCart(CartVO cart) throws Exception {
+		sql.delete(namespace + ".deleteCart", cart);
+	}
 }

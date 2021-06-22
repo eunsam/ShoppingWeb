@@ -74,4 +74,28 @@ where repNum=#{repNum}
 and userId=#{userId}
 </update>
 
+<!-- 카트 담기 -->
+<insert id="addCart">
+insert into tbl_cart (cartNum, userId, gdsNum, cartStock)
+values (tbl_cart_seq.nextval, #{userId}, #{gdsNum}, #{cartStock})
+</insert>
+
+<!-- 카트 목록 -->
+<select id="cartList" resultType="com.eunsam.domain.CartListVO">
+select row_number() over(order by c.cartNum desc) as num,
+c.cartNum, c.userId, c.gdsNum, c.cartStock, c.addDate,
+g.gdsName, g.gdsPrice, g.gdsthumbimg
+from tbl_cart c
+inner join tbl_goods g
+on c.gdsNum=g.gdsNum
+where c.userId=#{userId}
+</select>
+
+<!-- 카트 삭제 -->
+<delete id="deleteCart">
+delete tbl_cart
+where cartNum=#{cartNum}
+and userId=#{userId}
+</delete>
+
 </mapper>

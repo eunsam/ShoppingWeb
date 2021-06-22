@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.eunsam.dao.ShopDAO;
+import com.eunsam.domain.CartListVO;
+import com.eunsam.domain.CartVO;
 import com.eunsam.domain.GoodsViewVO;
 import com.eunsam.domain.ReplyListVO;
 import com.eunsam.domain.ReplyVO;
@@ -67,6 +69,24 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public void modifyReply(ReplyVO reply) throws Exception {
 		dao.modifyReply(reply);
+	}
+	
+	//카트 담기
+	@Override
+	public void addCart(CartVO cart) throws Exception {
+		dao.addCart(cart);
+	}
+	
+	//카트 목록
+	@Override
+	public List<CartListVO> cartList(String userId) throws Exception {
+		return dao.cartList(userId);
+	}
+	
+	//카트 삭제
+	@Override
+	public void deleteCart(CartVO cart) throws Exception {
+		dao.deleteCart(cart);
 	}
 
 }
