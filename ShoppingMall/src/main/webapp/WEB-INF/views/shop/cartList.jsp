@@ -179,7 +179,7 @@
 								<span>가격 : </span>
 									<fmt:formatNumber pattern="###,###,###" value="${cartList.gdsPrice}" /><br />
 								<span>구입 수량 : </span>${cartList.cartStock} 개<br />
-								<span>최종 가격</span><fmt:formatNumber pattern="###,###,###" value="${cartList.gdsPrice * cartList.cartStock}" /> 원
+								<span>가격 : </span><fmt:formatNumber pattern="###,###,###" value="${cartList.gdsPrice * cartList.cartStock}" /> 원
 							</p>
 							
 							<div class="delete">

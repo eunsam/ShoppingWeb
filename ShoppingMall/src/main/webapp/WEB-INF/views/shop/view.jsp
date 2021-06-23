@@ -177,7 +177,36 @@ function replyList() {
 						<p class="gdsStock">
 							<span>재고</span><fmt:formatNumber pattern="###,###,###" value="${view.gdsStock}" />EA</p>
 						<p class="cartStock">
-							<span>구입 수량</span><input type="number" min="1" max="${view.gdsStock}" value="1" /></p>
+ 							<span>구입 수량</span>
+ 							<button type="button" class="minus">-</button>
+ 							<input type="number" class="numBox" min="1" max="${view.gdsStock}" value="1" readonly="readonly"/>
+ 							<button type="button" class="plus">+</button>
+ 
+ 							<script>
+  								$(".plus").click(function(){
+   								var num = $(".numBox").val();
+  	 							var plusNum = Number(num) + 1;
+   
+  							 	if(plusNum >= ${view.gdsStock}) {
+    								$(".numBox").val(num);
+   									} else {
+    									$(".numBox").val(plusNum);
+    									}
+  							 	});
+  								
+  								$(".minus").click(function(){
+  									var num = $(".numBox").val();
+   									var minusNum = Number(num) - 1;
+   									
+   									if(minusNum <= 0) {
+   										$(".numBox").val(num);
+   										} else {
+   											$(".numBox").val(minusNum);
+   											}
+   									});
+  								</script>
+ 						</p>
+ 						
 						<p class="addToCart">
 							<button type="button" class="addCart_btn">CART</button>
 							
