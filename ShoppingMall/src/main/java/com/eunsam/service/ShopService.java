@@ -5,6 +5,9 @@ import java.util.List;
 import com.eunsam.domain.CartListVO;
 import com.eunsam.domain.CartVO;
 import com.eunsam.domain.GoodsViewVO;
+import com.eunsam.domain.OrderDetailVO;
+import com.eunsam.domain.OrderListVO;
+import com.eunsam.domain.OrderVO;
 import com.eunsam.domain.ReplyListVO;
 import com.eunsam.domain.ReplyVO;
 
@@ -39,4 +42,19 @@ public interface ShopService {
 	
 	//카트 삭제
 	public void deleteCart(CartVO cart) throws Exception;
+	
+	//주문 정보
+	public void orderInfo(OrderVO order) throws Exception;
+		
+	//주문 상세 정보
+	public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception;
+	
+	//주문 후 카트 비우기
+	public void cartAllDelete(String userId) throws Exception;
+	
+	//특정 유저 주문 목록
+	public List<OrderVO> orderList(OrderVO order) throws Exception;
+	
+	//특정 주문 정보
+	public List<OrderListVO> orderView(OrderVO order) throws Exception;
 }

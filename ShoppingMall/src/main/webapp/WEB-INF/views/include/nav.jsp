@@ -29,6 +29,10 @@
 	</li>
 	
 	<li>
+ 		<a href="/shop/orderList">주문조회</a>
+	</li>
+	
+	<li>
 		<a href="/member/signout">로그아웃</a>
 	</li>
 </c:if>

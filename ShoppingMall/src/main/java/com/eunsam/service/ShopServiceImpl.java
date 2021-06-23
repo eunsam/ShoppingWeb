@@ -11,6 +11,9 @@ import com.eunsam.dao.ShopDAO;
 import com.eunsam.domain.CartListVO;
 import com.eunsam.domain.CartVO;
 import com.eunsam.domain.GoodsViewVO;
+import com.eunsam.domain.OrderDetailVO;
+import com.eunsam.domain.OrderListVO;
+import com.eunsam.domain.OrderVO;
 import com.eunsam.domain.ReplyListVO;
 import com.eunsam.domain.ReplyVO;
 
@@ -87,6 +90,36 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public void deleteCart(CartVO cart) throws Exception {
 		dao.deleteCart(cart);
+	}
+	
+	//주문 정보
+	@Override
+	public void orderInfo(OrderVO order) throws Exception {
+		dao.orderInfo(order);
+	}
+	
+	//주문 상세 정보
+	@Override
+	public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception {
+		dao.orderInfo_Details(orderDetail);
+	}
+	
+	//주문 후 카트 비우기
+	@Override
+	public void cartAllDelete(String userId) throws Exception {
+		dao.cartAllDelete(userId);
+	}
+	
+	//특정 유저 주문 목록
+	@Override
+	public List<OrderVO> orderList(OrderVO order) throws Exception {
+		return dao.orderList(order);
+	}
+	
+	//특정 주문 정보
+	@Override
+	public List<OrderListVO> orderView(OrderVO order) throws Exception {
+		return dao.orderView(order);
 	}
 
 }
