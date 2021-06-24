@@ -58,6 +58,10 @@
  		.thumb img { width:200px; height:200px; }
  		.gdsInfo { float:right; width:calc(100% - 220px); line-height:2; }
  		.gdsInfo span { font-size:15px; font-weight:bold; display:inline-block; width:100px; margin-right:10px; }
+ 		
+ 		.deliveryChange { text-align:right; }
+		.delivery1_btn,
+		.delivery2_btn { font-size:16px; background:#fff; border:1px solid #999; margin-left:10px; }
 	</style>
 
 </head>
@@ -91,6 +95,35 @@
    						<p><span>수령인</span>${orderView.orderRec}</p>
    						<p><span>주소</span>(${orderView.userAddr1}) ${orderView.userAddr2} ${orderView.userAddr3}</p>
    						<p><span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.amount}" /> 원</p>
+   						<p><span>상태</span>${orderView.delivery}</p>
+   						
+   						<div class="deliveryChange">
+   							<form role="form" method="post" class="deliveryForm">
+   							
+   								<input type="hidden" name="orderId" value="${orderView.orderId}" />
+   								<input type="hidden" name="delivery" class="delivery" value="" />
+   								
+   								<button type="button" class="delivery1_btn">배송 중</button>
+   								<button type="button" class="delivery2_btn">배송 완료</button>
+   								
+   								<script>
+   									$(".delivery1_btn").click(function(){
+   										$(".delivery").val("배송 중");
+   										run();
+   									});
+   									
+   									$(".delivery2_btn").click(function(){
+   										$(".delivery").val("배송 완료");
+   										run();
+   									});
+   									
+   									function run(){
+   										$(".deliveryForm").submit();
+   									}
+   								</script>
+   								
+   							</form>
+   						</div>
   					</c:if>
   
  				</c:forEach>

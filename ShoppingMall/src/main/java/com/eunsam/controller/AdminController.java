@@ -221,5 +221,15 @@ public class AdminController {
 		model.addAttribute("orderView", orderView);
 	}
 	
+	//배송 상태
+	@RequestMapping(value = "/shop/orderView", method = RequestMethod.POST)
+	public String delivery(OrderVO order) throws Exception {
+		logger.info("post delivery");
+		
+		adminService.delivery(order);
+		
+		return "redirect:/admin/shop/orderView?n=" + order.getOrderId();
+	}
+	
 }
 
