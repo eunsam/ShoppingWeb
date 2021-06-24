@@ -10,6 +10,8 @@ import com.eunsam.dao.AdminDAO;
 import com.eunsam.domain.CategoryVO;
 import com.eunsam.domain.GoodsVO;
 import com.eunsam.domain.GoodsViewVO;
+import com.eunsam.domain.OrderListVO;
+import com.eunsam.domain.OrderVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -51,5 +53,17 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void goodsDelete(int gdsNum) throws Exception {
 		dao.goodsDelete(gdsNum);
+	}
+	
+	//주문목록
+	@Override
+	public List<OrderVO> orderList() throws Exception {
+		return dao.orderList();
+	}
+		
+	//특정 주문 목록
+	@Override
+	public List<OrderListVO> orderView(OrderVO order) throws Exception {
+		return dao.orderView(order);
 	}
 }

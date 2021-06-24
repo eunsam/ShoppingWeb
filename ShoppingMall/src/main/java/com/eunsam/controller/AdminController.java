@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.eunsam.domain.CategoryVO;
 import com.eunsam.domain.GoodsVO;
 import com.eunsam.domain.GoodsViewVO;
+import com.eunsam.domain.OrderListVO;
+import com.eunsam.domain.OrderVO;
 import com.eunsam.service.AdminService;
 import com.eunsam.utils.UploadFileUtils;
 
@@ -195,5 +197,29 @@ public class AdminController {
 			
 			return;
 			
-	}}
+	}
+	
+	//주문 목록
+	@RequestMapping(value = "/shop/orderList", method = RequestMethod.GET)
+	public void getOrderList(Model model) throws Exception {
+		logger.info("get order list");
+		
+		List<OrderVO> orderList = adminService.orderList();
+		
+		model.addAttribute("orderList", orderList);
+	}
+	
+	//특정 주문 목록
+	@RequestMapping(value = "/shop/orderView", method = RequestMethod.GET)
+	public void getOrderView(@RequestParam("n") String orderId,
+			OrderVO order, Model model) throws Exception {
+		logger.info("get order view");
+		
+		order.setOrderId(orderId);
+		List<OrderListVO> orderView = adminService.orderView(order);
+		
+		model.addAttribute("orderView", orderView);
+	}
+	
+}
 
